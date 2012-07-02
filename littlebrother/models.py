@@ -29,8 +29,10 @@ class Voter(peewee.Model):
     countyvoterid = peewee.CharField()
     idrequired = peewee.CharField()
 
-    def __unicode__(self):
-        return " ".join([self.first_name, self.last_name])
+    @property
+    def full_name(self):
+        return " ".join([self.first_name or '(no first name)',
+                         self.last_name or '(no last name)'])
 
     class Meta:
         database = db
