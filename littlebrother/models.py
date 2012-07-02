@@ -1,7 +1,6 @@
 import peewee
 
 db = peewee.PostgresqlDatabase('littlebrother')
-db.connect()
 
 class Voter(peewee.Model):
     id = peewee.PrimaryKeyField(column_class=peewee.IntegerColumn, db_column='voterid')
