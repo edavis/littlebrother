@@ -1,6 +1,6 @@
-from flask_app import app
+from littlebrother import app
 from flask import render_template, request
-from models import Voter, db
+from models import Voter
 from forms import Search
 
 @app.route("/")

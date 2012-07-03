@@ -1,4 +1,4 @@
-from flask_app import app
+from littlebrother import app
 from forms import Search
 
 @app.context_processor

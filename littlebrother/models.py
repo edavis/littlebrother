@@ -1,6 +1,6 @@
 import datetime
 import peewee
-from flask_app import db
+from littlebrother import db
 
 class Voter(db.Model):
     id = peewee.PrimaryKeyField(column_class=peewee.IntegerColumn, db_column='voterid')
