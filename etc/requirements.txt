@@ -1,4 +1,4 @@
-https://github.com/coleifer/peewee/zipball/0c2b55754cd5ffbb5dbf571ea939084945018cb1
+peewee==0.9.9
 ipython==0.13
 flask==0.9
 psycopg2==2.4.5
