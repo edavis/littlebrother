@@ -1,10 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
-{% if not voter %}
-<p>no voter by that ID</p>
-{% else %}
-<p>{{ voter.full_name }} - {{ voter.party }}</p>
-{% endif %}
+<div class="page-header">
+  <h1>{{ voter.full_name|title }} <small>{{ voter.party }} - {{ voter.city|title }}</small></h1>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <table class="table table-bordered">
+      <h3>A little about {{ voter.first_name|title }} &hellip;</h3>
+      <tbody>
+        <tr>
+          <td>Born</td>
+          <td>{{ voter.birthdate }} ({{ voter.years_old }} years old)</td>
+        </tr>
+        <tr>
+          <td>Registered</td>
+          <td>{{ voter.registrationdate }}</td>
+        </tr>
+        <tr>
+          <td>Address</td>
+          <td>{{ voter.address1 }}<br/>{{ voter.city }}, {{ voter.state }} {{ voter.zip }}</td>
+        </tr>
+        {% if voter.address2 %}
+        <tr>
+          <td>Address</td>
+          <td>{{ voter.address2 }}<br/>{{ voter.city }}, {{ voter.state }} {{ voter.zip }}</td>
+        </tr>
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="span6">
+    <h3>{{ voter.first_name|title }}&apos;s districts &hellip;</h3>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>Congress</td>
+          <td>{{ voter.congressionaldistrict }}</td>
+        </tr>
+        <tr>
+          <td>Senate</td>
+          <td>{{ voter.senatedistrict }}</td>
+        </tr>
+        <tr>
+          <td>Assembly</td>
+          <td>{{ voter.assemblydistrict }}</td>
+        </tr>
+        <tr>
+          <td>Precinct</td>
+          <td><a href="/precinct/{{ voter.registeredprecinct }}">{{ voter.registeredprecinct }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 {% endblock %}
-
-

@@ -1,3 +1,4 @@
+import datetime
 import peewee
 
 db = peewee.PostgresqlDatabase('littlebrother')
@@ -36,6 +37,15 @@ class Voter(peewee.Model):
     @property
     def url(self):
         return "/detail/%d" % self.id
+
+    @property
+    def years_old(self):
+        """
+        Return age (in years) of voter.
+        """
+        today = datetime.datetime.today()
+        born = datetime.datetime.strptime(self.birthdate, "%m/%d/%Y")
+        return (today - born).days / 365
 
     class Meta:
         database = db
