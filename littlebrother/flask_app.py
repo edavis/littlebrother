@@ -12,3 +12,5 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 db = Database(app)
+
+import context_processors
