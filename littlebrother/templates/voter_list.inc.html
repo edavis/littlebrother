@@ -1,8 +1,0 @@
-{% for voter in voters %}
-  <tr>
-    <td><a href="{{ voter.url }}">{{ voter.full_name }}</a></td>
-    <td>{{ voter.party }}</td>
-    <td>{{ voter.address1 }}</td>
-    <td>{{ voter.city }}, {{ voter.state }} {{ voter.zip }}</td>
-  </tr>
-{% endfor %}

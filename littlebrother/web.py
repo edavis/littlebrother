@@ -5,7 +5,7 @@ from models import Voter, db
 @app.route("/")
 def voter_list():
     voters = Voter.select().paginate(1, 100).execute()
-    return render_template('voter_list.html', voters=voters.iterator())
+    return render_template('voter_list.all.html', voters=voters.iterator())
 
 @app.route("/detail/<int:voterid>")
 def voter_detail(voterid):
@@ -18,7 +18,11 @@ def voter_detail(voterid):
 @app.route("/precinct/<int:precinct>")
 def voters_by_precinct(precinct):
     voters = Voter.select().where(registeredprecinct=precinct).paginate(1, 100).execute()
-    return render_template('voter_list.html', voters=voters.iterator())
+    context = {
+        'voters': voters.iterator(),
+        'precinct': precinct,
+    }
+    return render_template('voter_list.precinct.html', **context)
 
 if __name__ == "__main__":
     app.run(debug=True)
