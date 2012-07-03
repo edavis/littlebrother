@@ -33,6 +33,10 @@ class Voter(peewee.Model):
         return " ".join([self.first_name or '(no first name)',
                          self.last_name or '(no last name)'])
 
+    @property
+    def url(self):
+        return "/detail/%d" % self.id
+
     class Meta:
         database = db
         db_table = 'voters'
