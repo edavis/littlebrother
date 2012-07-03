@@ -24,5 +24,10 @@ def voter_detail(voterid):
         voter = None
     return render_template('voter_detail.html', voter=voter)
 
+@app.route("/precinct/<int:precinct>")
+def voters_by_precinct(precinct):
+    voters = Voter.select().where(registeredprecinct=precinct).paginate(1, 100).execute()
+    return render_template('voter_list.html', voters=voters.iterator())
+
 if __name__ == "__main__":
     app.run(debug=True)
