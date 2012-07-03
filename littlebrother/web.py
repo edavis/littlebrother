@@ -1,6 +1,7 @@
 from flask_app import app
 from flask import render_template, request
 from models import Voter, db
+from forms import Search
 
 @app.route("/")
 def voter_list():
@@ -26,13 +27,16 @@ def voters_by_precinct(precinct):
 
 @app.route("/search/")
 def search():
-    query = request.args.get('q')
-    field = request.args.get('type', 'name')
-    voters = Voter.search(query, field)
+    search_form = Search(request.args)
+    voters = Voter.search(search_form.query.data, search_form.type.data)
+    voters = list(voters)[:100]
+
     context = {
-        'voters': list(voters.iterator())[:100],
-        'query': query,
+        'voters': voters,
+        'form': search_form,
+        'query': search_form.query.data,
     }
+
     return render_template('voter_list.search.html', **context)
 
 if __name__ == "__main__":

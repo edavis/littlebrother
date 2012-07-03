@@ -7,13 +7,10 @@
 </div>
 
 <form action="/search/" method="get" class="form-search well">
-  <select name="type" class="span2">
-    <option value="name">Name</option>
-    <option value="address">Address</option>
-  </select>
+  {{ form.type(class_="span2") }}
   <div class="input-append">
-    <input type="text" value="{{ query }}" name="q" class="span8 search-query"/><button type="submit" class="btn">Search</button>
-  </div>
+    {{ form.query(class_="span8") }}
+    <button type="submit" class="btn">Search</button>
   </div>
 </form>
 
