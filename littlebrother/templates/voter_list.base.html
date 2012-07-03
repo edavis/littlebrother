@@ -17,6 +17,7 @@
   </div>
 </form>
 
+{% if voters %}
 <table class="table table-striped table-bordered">
   <thead>
     <tr>
@@ -37,6 +38,11 @@
     {% endfor %}
   </tbody>
 </table>
+{% else %}
+<div class="alert">
+  <strong>bummer!</strong> couldn't find any matches
+</div>
+{% endif %}
 
 </div></div>
 {% endblock %}
