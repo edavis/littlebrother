@@ -46,6 +46,16 @@ class Voter(db.Model):
         born = datetime.datetime.strptime(self.birthdate, "%m/%d/%Y")
         return (today - born).days / 365
 
+    @classmethod
+    def search(cls, query):
+        sql_query = """
+select *
+from voters
+where to_tsvector('english', last_name || ' ' || first_name) @@
+      plainto_tsquery('english', %s)
+order by (last_name, first_name)"""
+        return peewee.RawQuery(cls, sql_query, query).execute()
+
     class Meta:
         db_table = 'voters'
         ordering = ('last_name', 'first_name')

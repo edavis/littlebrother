@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template
+from flask import render_template, request
 from models import Voter, db
 
 @app.route("/")
@@ -23,6 +23,17 @@ def voters_by_precinct(precinct):
         'precinct': precinct,
     }
     return render_template('voter_list.precinct.html', **context)
+
+@app.route("/search/")
+def search():
+    query = request.args.get('q')
+    page = request.args.get('page', 1)
+    voters = Voter.search(query)
+    context = {
+        'voters': list(voters.iterator())[:100],
+        'query': query,
+    }
+    return render_template('voter_list.search.html', **context)
 
 if __name__ == "__main__":
     app.run(debug=True)
