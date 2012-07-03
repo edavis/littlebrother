@@ -3,3 +3,4 @@ ipython==0.13
 flask==0.9
 psycopg2==2.4.5
 flask-peewee==0.5.4
+WTForms==1.0.1
