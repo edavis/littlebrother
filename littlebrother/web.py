@@ -1,15 +1,6 @@
-from flask import Flask, render_template
+from flask_app import app
+from flask import render_template
 from models import Voter, db
-
-app = Flask(__name__)
-
-@app.before_request
-def before_request():
-    db.connect()
-
-@app.teardown_request
-def teardown_request(exc):
-    db.close()
 
 @app.route("/")
 def voter_list():

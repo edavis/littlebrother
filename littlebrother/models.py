@@ -1,9 +1,8 @@
 import datetime
 import peewee
+from flask_app import db
 
-db = peewee.PostgresqlDatabase('littlebrother')
-
-class Voter(peewee.Model):
+class Voter(db.Model):
     id = peewee.PrimaryKeyField(column_class=peewee.IntegerColumn, db_column='voterid')
     county = peewee.CharField()
     first_name = peewee.CharField()
@@ -48,7 +47,5 @@ class Voter(peewee.Model):
         return (today - born).days / 365
 
     class Meta:
-        database = db
         db_table = 'voters'
         ordering = ('last_name', 'first_name')
-
