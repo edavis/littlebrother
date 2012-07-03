@@ -1,0 +1,3 @@
+graft littlebrother/static
+graft littlebrother/templates
+graft etc
