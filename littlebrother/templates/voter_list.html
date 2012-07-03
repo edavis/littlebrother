@@ -19,18 +19,13 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Party</th>
+      <th>Address</th>
       <th>Location</th>
     </tr>
   </thead>
   <tbody>
-    {% for voter in voters %}
-      <tr>
-        <td><a href="{{ voter.url }}">{{ voter.full_name }}</a></td>
-        <td>{{ voter.party }}</td>
-        <td>{{ voter.address1 }}</td>
-        <td>{{ voter.city }}, {{ voter.state }} {{ voter.zip }}</td>
-      </tr>
-    {% endfor %}
+    {% include "voter_list.inc.html" %}
   </tbody>
 </table>
 
