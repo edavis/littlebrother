@@ -27,8 +27,8 @@ def voters_by_precinct(precinct):
 @app.route("/search/")
 def search():
     query = request.args.get('q')
-    page = request.args.get('page', 1)
-    voters = Voter.search(query)
+    field = request.args.get('type', 'name')
+    voters = Voter.search(query, field)
     context = {
         'voters': list(voters.iterator())[:100],
         'query': query,
