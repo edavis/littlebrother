@@ -1,2 +1,4 @@
 var/voterlists
 *.pyc
+*.egg-info
+dist
