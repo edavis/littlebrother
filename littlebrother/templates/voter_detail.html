@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not voter %}
+<p>no voter by that ID</p>
+{% else %}
+<p>{{ voter.full_name }} - {{ voter.party }}</p>
+{% endif %}
+{% endblock %}
+
+

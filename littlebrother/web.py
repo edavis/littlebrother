@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from models import Voter, db
 
 app = Flask(__name__)
@@ -11,10 +11,18 @@ def before_request():
 def teardown_request(exc):
     db.close()
 
-@app.route("/<voterid>")
-def hello(voterid):
-    voter = Voter.get(id=voterid)
-    return voter.full_name
+@app.route("/")
+def voter_list():
+    voters = Voter.select().paginate(1, 100).execute()
+    return render_template('voter_list.html', voters=voters.iterator())
+
+@app.route("/detail/<int:voterid>")
+def voter_detail(voterid):
+    try:
+        voter = Voter.get(id=voterid)
+    except Voter.DoesNotExist:
+        voter = None
+    return render_template('voter_detail.html', voter=voter)
 
 if __name__ == "__main__":
     app.run(debug=True)
