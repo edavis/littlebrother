@@ -40,3 +40,5 @@ class Voter(peewee.Model):
     class Meta:
         database = db
         db_table = 'voters'
+        ordering = ('last_name', 'first_name')
+
