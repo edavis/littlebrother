@@ -3,6 +3,9 @@ try:
 except ImportError:
     from distutils.core import setup
 
+data_files = {'etc/littlebrother': ['etc/littlebrother-uwsgi.ini'],
+              'share/littlebrother': ['share/create_voters_table.sql',
+                                      'share/create_search_indexes.sql']}
 setup(
     name = "littlebrother",
     version = "0.1",
@@ -14,4 +17,5 @@ setup(
     install_requires = open('etc/requirements.txt').readlines(),
     include_package_data=True,
     zip_safe=False,
+    data_files=list(data_files.items()),
 )
