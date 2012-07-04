@@ -1,3 +1,4 @@
-graft littlebrother/static
-graft littlebrother/templates
-graft etc
+recursive-include littlebrother/static *
+recursive-include littlebrother/templates *
+recursive-include etc *
+recursive-include share *
