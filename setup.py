@@ -17,5 +17,5 @@ setup(
     install_requires = open('etc/requirements.txt').readlines(),
     include_package_data=True,
     zip_safe=False,
-    data_files=list(data_files.items()),
+    data_files=data_files.items(),
 )
