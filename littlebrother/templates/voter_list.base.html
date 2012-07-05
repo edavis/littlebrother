@@ -29,8 +29,8 @@
     <tr>
       <td><a href="{{ voter.url }}">{{ voter.full_name }}</a></td>
       <td>{{ voter.party }}</td>
-      <td>{{ voter.address1 }}</td>
-      <td>{{ voter.city }}, {{ voter.state }} {{ voter.zip }}</td>
+      <td>{{ voter.address1|default('(no address)', true) }}</td>
+      <td>{{ voter.city|default('(no city)', true) }}, {{ voter.state|default('NV', true) }} {{ voter.zip }}</td>
     </tr>
     {% endfor %}
   </tbody>
