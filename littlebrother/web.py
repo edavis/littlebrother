@@ -5,8 +5,7 @@ from forms import Search
 
 @app.route("/")
 def voter_list():
-    voters = Voter.select().paginate(1, 100).execute()
-    return render_template('voter_list.all.html', voters=voters.iterator())
+    return render_template('voter_list.all.html')
 
 @app.route("/detail/<int:voterid>")
 def voter_detail(voterid):

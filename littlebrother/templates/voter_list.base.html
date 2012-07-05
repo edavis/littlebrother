@@ -36,9 +36,11 @@
   </tbody>
 </table>
 {% else %}
+{% block no_voters %}
 <div class="alert">
   <strong>bummer!</strong> nobody here
 </div>
+{% endblock %}
 {% endif %}
 
 </div></div>
