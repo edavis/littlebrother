@@ -2,3 +2,4 @@ var/voterlists
 *.pyc
 *.egg-info
 dist
+littlebrother-env
