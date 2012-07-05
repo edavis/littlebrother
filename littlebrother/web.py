@@ -28,11 +28,14 @@ def voters_by_precinct(precinct):
 def search():
     search_form = Search(request.args)
     voters = Voter.search(search_form.query.data, search_form.type.data)
-    voters = list(voters)[:100]
+
+    page = int(request.args.get('page', 1))
+    voters = voters.paginate(page, app.config['RESULTS_PER_PAGE'])
 
     context = {
         'voters': voters,
         'form': search_form,
+        'next_page_num': page + 1,
     }
 
     return render_template('voter_list.search.html', **context)

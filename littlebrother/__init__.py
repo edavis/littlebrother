@@ -7,6 +7,7 @@ DATABASE = {
 }
 
 DEBUG = True
+RESULTS_PER_PAGE = 10
 
 app = Flask(__name__)
 app.config.from_object(__name__)
