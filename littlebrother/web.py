@@ -1,7 +1,8 @@
-from littlebrother import app
 from flask import render_template, request
+from littlebrother import app
 from models import Voter
 from forms import Search
+from pagination import paginate
 
 @app.route("/")
 def voter_list():
@@ -17,27 +18,21 @@ def voter_detail(voterid):
 
 @app.route("/precinct/<int:precinct>")
 def voters_by_precinct(precinct):
-    voters = Voter.select().where(registeredprecinct=precinct).paginate(1, 100).execute()
+    voters = Voter.select().where(registeredprecinct=precinct)
     context = {
-        'voters': voters.iterator(),
         'precinct': precinct,
     }
+    context.update(paginate(voters))
     return render_template('voter_list.precinct.html', **context)
 
 @app.route("/search/")
 def search():
     search_form = Search(request.args)
     voters = Voter.search(search_form.query.data, search_form.type.data)
-
-    page = int(request.args.get('page', 1))
-    voters = voters.paginate(page, app.config['RESULTS_PER_PAGE'])
-
     context = {
-        'voters': voters,
         'form': search_form,
-        'next_page_num': page + 1,
     }
-
+    context.update(paginate(voters))
     return render_template('voter_list.search.html', **context)
 
 if __name__ == "__main__":

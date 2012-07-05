@@ -43,5 +43,9 @@
 {% endblock %}
 {% endif %}
 
-</div></div>
+{% block pagination %}
+<div align="center">
+  <p>{{ total_voters_count }} voters {% if has_next_page %}&rarr; <a href="?{{ params }}&page={{ next_page_num }}">next page</a>{% endif %}</p>
+</div>
+{% endblock %}
 {% endblock %}
