@@ -53,3 +53,4 @@ ALTER TABLE ONLY voters
 
 CREATE INDEX voters_voterid ON voters USING btree (voterid);
 CREATE INDEX voters_county ON voters USING btree (county);
+CREATE INDEX voters_precinct ON voters USING btree (registeredprecinct);
