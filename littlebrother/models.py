@@ -49,21 +49,13 @@ class Voter(db.Model):
     @classmethod
     def search(cls, query, field='name'):
         if field == 'name':
-            sql_query = """
-                        select *
-                        from voters
-                        where to_tsvector('english', last_name || ' ' || first_name) @@
-                              plainto_tsquery('english', %s)
-                        order by (last_name, first_name)"""
+            search = peewee.R("to_tsvector('english', last_name || ' ' || first_name) @@ "
+                              "plainto_tsquery('english', %s)", query)
         elif field == 'address':
-            sql_query = """
-                        select *
-                        from voters
-                        where to_tsvector('english', address1) @@
-                              plainto_tsquery('english', %s)
-                        order by (last_name, first_name)"""
+            search = peewee.R("to_tsvector('english', address1) @@ "
+                              "plainto_tsquery('english', %s)", query)
 
-        return peewee.RawQuery(cls, sql_query, query).execute()
+        return cls.select().where(search).order_by('last_name', 'first_name')
 
     class Meta:
         db_table = 'voters'
