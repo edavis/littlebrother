@@ -33,7 +33,6 @@ def search():
     context = {
         'voters': voters,
         'form': search_form,
-        'query': search_form.query.data,
     }
 
     return render_template('voter_list.search.html', **context)
