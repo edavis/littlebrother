@@ -10,7 +10,7 @@ data_files = {'etc/littlebrother': ['etc/littlebrother-uwsgi.ini',
                                       'share/create_search_indexes.sql']}
 setup(
     name = "littlebrother",
-    version = "0.2",
+    version = "0.3",
     description = "Quickly search through Nevada voters",
     author = "Eric Davis",
     author_email = "ed@npri.org",
