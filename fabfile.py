@@ -32,3 +32,6 @@ def deploy(commit="HEAD", upgrade=False):
 
         run("rm -rf littlebrother")
         run("rm -f /tmp/%s" % output)
+
+def restart():
+    run("supervisorctl restart littlebrother")
