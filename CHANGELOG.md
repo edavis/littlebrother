@@ -1,3 +1,8 @@
+v0.3
+
+- Add config files for nginx, uwsgi and supervisord
+- Use Fabric for deployment
+
 v0.2
 
 - Add search and precinct pagination
