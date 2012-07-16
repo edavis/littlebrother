@@ -1,3 +1,9 @@
+v0.3.1
+
+- Connect to database as user 'django'
+- Change how restarts happen now that we're using uwsgi in emperor
+  mode
+
 v0.3
 
 - Add config files for nginx, uwsgi and supervisord
