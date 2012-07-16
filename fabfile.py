@@ -34,4 +34,4 @@ def deploy(commit="HEAD", upgrade=False):
         run("rm -f /tmp/%s" % output)
 
 def restart():
-    run("supervisorctl restart littlebrother")
+    run("touch /etc/uwsgi/vassals/littlebrother.ini")
