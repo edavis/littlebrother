@@ -4,6 +4,7 @@ from flask_peewee.db import Database
 DATABASE = {
     'name': 'littlebrother',
     'engine': 'peewee.PostgresqlDatabase',
+    'user': 'django',
 }
 
 DEBUG = True
