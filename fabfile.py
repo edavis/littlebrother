@@ -10,13 +10,13 @@ def pack(commit="HEAD"):
     Returns the basename of the file (so deploy can `put` the file
     easily).
     """
-    output = local("git describe %s" % commit, capture=True)
-    local("git archive --format=tar.gz --prefix=littlebrother/ -o /tmp/littlebrother-%(output)s.tar.gz %(commit)s" %
-          dict(commit=commit, output=output))
-    return "littlebrother-%s.tar.gz" % output
+    local("git archive --format=tar.gz --prefix=littlebrother/ -o /tmp/littlebrother.tar.gz %(commit)s" %
+          dict(commit=commit))
 
 def deploy(commit="HEAD", upgrade=False):
-    output = pack(commit)
+    pack(commit)
+    output = "littlebrother.tar.gz"
+
     put("/tmp/%s" % output, "/tmp")
     with cd("/srv/environments/littlebrother"):
         run("tar xf /tmp/%s" % output)
